@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         for(int i =0; i<20; i++){
-            mWordList.addLast("Word" + mCount++);
+            mWordList.addLast("ImageRepeats " + mCount++  + "  number of times");
             Log.d("WordList", mWordList.getLast());
         }
 

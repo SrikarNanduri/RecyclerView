@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -34,6 +35,7 @@ public class WordListAdapter extends
     public void onBindViewHolder(WordListAdapter.WordViewHolder holder, int position) {
         String mCurrent = mWordList.get(position);
         holder.wordItemView.setText(mCurrent);
+        holder.imageView.setImageResource(R.drawable.food);
     }
 
     @Override
@@ -44,10 +46,12 @@ public class WordListAdapter extends
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final TextView wordItemView;
+        public final ImageView imageView;
         final WordListAdapter mAdapter;
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
             wordItemView = (TextView) itemView.findViewById(R.id.word);
+            imageView = (ImageView) itemView.findViewById(R.id.image);
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
         }

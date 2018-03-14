@@ -9,5 +9,11 @@
     <TextView
         android:id="@+id/word"
         style="@style/word_title" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
 
 </LinearLayout>
