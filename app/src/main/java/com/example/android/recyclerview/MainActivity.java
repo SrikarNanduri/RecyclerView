@@ -10,7 +10,7 @@ import android.view.View;
 
 import java.util.LinkedList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private LinkedList<String> mWordList = new LinkedList<String>();
     private int mCount = 0;
