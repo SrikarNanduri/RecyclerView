@@ -6,15 +6,15 @@ package com.example.android.recyclerview;
 
 public class ImageUrl {
     private String android_image_url;
-    private String android_version_name;
+    private String android_text;
 
 
     public String getAndroid_version_name() {
-        return android_version_name;
+        return android_text;
     }
 
-    public void setAndroid_version_name(String android_version_name) {
-        this.android_version_name = android_version_name;
+    public void setAndroid_version_name(String android_text) {
+        this.android_text = android_text;
     }
 
 

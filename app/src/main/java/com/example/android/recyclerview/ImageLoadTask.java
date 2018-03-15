@@ -35,8 +35,6 @@ public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
     @Override
     protected Bitmap doInBackground(Void... params) {
-
-
         try {
             URL urlConnection = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlConnection

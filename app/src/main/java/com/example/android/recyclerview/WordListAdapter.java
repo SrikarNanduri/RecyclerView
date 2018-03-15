@@ -9,9 +9,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 
@@ -22,17 +19,14 @@ import java.util.ArrayList;
 public class WordListAdapter extends
         RecyclerView.Adapter<WordListAdapter.WordViewHolder>  {
 
-    private ArrayList<ImageUrl> android_versions;
+    private ArrayList<ImageUrl> android_text;
 
     private LayoutInflater mInflater;
-    private Context context;
     private ProgressBar mLoadingIndicator;
 
-    public WordListAdapter(Context context, ArrayList android_versions) {
+    public WordListAdapter(Context context, ArrayList android_text) {
         mInflater = LayoutInflater.from(context);
-        this.android_versions = android_versions;
-        this.context = context;
-       // this.mLoadingIndicator= mLoadingIndicator;
+        this.android_text = android_text;
     }
 
     @Override
@@ -43,9 +37,8 @@ public class WordListAdapter extends
 
     @Override
     public void onBindViewHolder(WordListAdapter.WordViewHolder holder, int position) {
-        holder.wordItemView.setText(android_versions.get(position).getAndroid_version_name());
-
-        new ImageLoadTask(android_versions.get(position).getAndroid_image_url(), holder.imageView, mLoadingIndicator).execute();
+        new ImageLoadTask(android_text.get(position).getAndroid_image_url(), holder.imageView, mLoadingIndicator).execute();
+        holder.wordItemView.setText(android_text.get(position).getAndroid_version_name());
         //Picasso.with(context).load(android_versions.get(position).getAndroid_image_url()).resize(120, 60).into(holder.imageView);
 
 
@@ -53,7 +46,7 @@ public class WordListAdapter extends
 
     @Override
     public int getItemCount() {
-        return android_versions.size();
+        return android_text.size();
     }
 
 
@@ -63,25 +56,12 @@ public class WordListAdapter extends
         final WordListAdapter mAdapter;
         public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
-            wordItemView = (TextView) itemView.findViewById(R.id.word);
-            imageView = (ImageView) itemView.findViewById(R.id.image);
-            mLoadingIndicator = (ProgressBar) itemView.findViewById(R.id.pb_loading_indicator);
-
+            imageView =  itemView.findViewById(R.id.image);
+            mLoadingIndicator =  itemView.findViewById(R.id.pb_loading_indicator);
+            wordItemView =  itemView.findViewById(R.id.word);
             this.mAdapter = adapter;
 
         }
-
-       /* @Override
-        public void onClick(View view) {
-            // Get the position of the item that was clicked.
-            int mPosition = getLayoutPosition();
-// Use that to access the affected item in mWordList.
-
-// Change the word in the mWordList.
-// Notify the adapter, that the data has changed so it can
-// update the RecyclerView to display the data.
-            mAdapter.notifyDataSetChanged();
-        }*/
     }
 
 }
