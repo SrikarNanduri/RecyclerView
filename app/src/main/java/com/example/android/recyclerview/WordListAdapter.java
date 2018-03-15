@@ -6,9 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.LinkedList;
+
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
 
 /**
  * Created by srikarn on 14-03-2018.
@@ -17,12 +22,17 @@ import java.util.LinkedList;
 public class WordListAdapter extends
         RecyclerView.Adapter<WordListAdapter.WordViewHolder>  {
 
-    private final LinkedList<String> mWordList;
-    private LayoutInflater mInflater;
+    private ArrayList<ImageUrl> android_versions;
 
-    public WordListAdapter(Context context, LinkedList<String> wordList) {
+    private LayoutInflater mInflater;
+    private Context context;
+    private ProgressBar mLoadingIndicator;
+
+    public WordListAdapter(Context context, ArrayList android_versions) {
         mInflater = LayoutInflater.from(context);
-        this.mWordList = wordList;
+        this.android_versions = android_versions;
+        this.context = context;
+       // this.mLoadingIndicator= mLoadingIndicator;
     }
 
     @Override
@@ -33,18 +43,21 @@ public class WordListAdapter extends
 
     @Override
     public void onBindViewHolder(WordListAdapter.WordViewHolder holder, int position) {
-        String mCurrent = mWordList.get(position);
-        holder.wordItemView.setText(mCurrent);
-        holder.imageView.setImageResource(R.drawable.food);
+        holder.wordItemView.setText(android_versions.get(position).getAndroid_version_name());
+
+        new ImageLoadTask(android_versions.get(position).getAndroid_image_url(), holder.imageView, mLoadingIndicator).execute();
+        //Picasso.with(context).load(android_versions.get(position).getAndroid_image_url()).resize(120, 60).into(holder.imageView);
+
+
     }
 
     @Override
     public int getItemCount() {
-        return mWordList.size();
+        return android_versions.size();
     }
 
 
-    class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class WordViewHolder extends RecyclerView.ViewHolder  {
         public final TextView wordItemView;
         public final ImageView imageView;
         final WordListAdapter mAdapter;
@@ -52,22 +65,23 @@ public class WordListAdapter extends
             super(itemView);
             wordItemView = (TextView) itemView.findViewById(R.id.word);
             imageView = (ImageView) itemView.findViewById(R.id.image);
+            mLoadingIndicator = (ProgressBar) itemView.findViewById(R.id.pb_loading_indicator);
+
             this.mAdapter = adapter;
-            itemView.setOnClickListener(this);
+
         }
 
-        @Override
+       /* @Override
         public void onClick(View view) {
             // Get the position of the item that was clicked.
             int mPosition = getLayoutPosition();
 // Use that to access the affected item in mWordList.
-            String element = mWordList.get(mPosition);
+
 // Change the word in the mWordList.
-            mWordList.set(mPosition, "Clicked! " + element);
 // Notify the adapter, that the data has changed so it can
 // update the RecyclerView to display the data.
             mAdapter.notifyDataSetChanged();
-        }
+        }*/
     }
 
 }
