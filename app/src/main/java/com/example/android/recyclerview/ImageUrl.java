@@ -9,11 +9,11 @@ public class ImageUrl {
     private String android_text;
 
 
-    public String getAndroid_version_name() {
+    public String get_Text() {
         return android_text;
     }
 
-    public void setAndroid_version_name(String android_text) {
+    public void set_Text(String android_text) {
         this.android_text = android_text;
     }
 

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
-    private ProgressBar mLoadingIndicator;
 
 
 
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLoadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_indicator);
-
         // Get a handle to the RecyclerView.
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         mRecyclerView.setHasFixedSize(true);
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity  {
         ArrayList mList = new ArrayList<>();
         for(int i=0;i<android_text.length;i++){
             ImageUrl androidVersion = new ImageUrl();
-            androidVersion.setAndroid_version_name(android_text[i]);
+            androidVersion.set_Text(android_text[i]);
             androidVersion.setAndroid_image_url(android_image_urls[i]);
             mList.add(androidVersion);
         }
